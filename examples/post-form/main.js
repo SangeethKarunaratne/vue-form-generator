@@ -1,6 +1,6 @@
-var VueFormGenerator = window.VueFormGenerator;
+let VueFormGenerator = window.VueFormGenerator;
 
-var vm = new Vue({
+let vm = new Vue({
 	el: "#app",
 	components: {
 		"vue-form-generator": VueFormGenerator.component
@@ -12,7 +12,7 @@ var vm = new Vue({
 				json = JSON.stringify(json, undefined, 4);
 				json = json.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 				return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-					var cls = "number";
+					let cls = "number";
 					if (/^"/.test(match)) {
 						if (/:$/.test(match)) {
 							cls = "key";
@@ -37,10 +37,55 @@ var vm = new Vue({
 			password: "J0hnD03!x4",
 			skills: "Javascript",
 			email: "john.doe@gmail.com",
-			status: true
+			status: true,
+			list: 'a',
 		},
 		schema: {
 			fields: [
+				{
+					type: "treeSelect",
+					label: "Tree Select",
+					model: "list",
+					valueFormat: "object",
+					selectOptions: {
+						type: "list",
+						searchable: true,
+						closeOnSelect: false,
+						showInfoIcon: true,
+					},
+					values: function (){
+						return [
+							{
+								id: "a",
+								label: "a",
+								children: [
+									{
+										id: "aa",
+										label: "aa",
+									},
+									{
+										id: "ab",
+										label: "ab",
+									}
+								]
+							},
+							{
+								id: "c",
+								label: "c",
+								children: [
+									{
+										id: "ca",
+										label: "ca",
+									},
+									{
+										id: "cb",
+										label: "cb",
+									}
+								]
+							}
+						];
+					}
+				},
 				{
 					type: "input",
 					inputType: "text",

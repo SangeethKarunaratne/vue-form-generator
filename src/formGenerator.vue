@@ -224,7 +224,7 @@ export default {
 		font-size: 14px;
 		line-height: 1.42857143;
 		color: #555;
-		background-color: #fff;
+		//background-color: #fff;
 		background-image: none;
 		border: 1px solid #ccc;
 		border-radius: 4px;

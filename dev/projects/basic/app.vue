@@ -16,6 +16,10 @@
 
 <script>
 import mixinUtils from "../../mixins/utils.js";
+import Treeselect from "@riophae/vue-treeselect";
+import Vue from "vue";
+
+Vue.component("treeselect", Treeselect);
 
 export default {
 	mixins: [mixinUtils],
@@ -29,11 +33,56 @@ export default {
 			model: {
 				first_name: "David",
 				last_name: "Higgins",
-				status: true
+				status: true,
+				list: 'a',
 			},
 
 			schema: {
 				fields: [
+					{
+						type: "treeSelect",
+						label: "Tree Select",
+						model: "list",
+						valueFormat: "object",
+						selectOptions: {
+							type: "list",
+							searchable: true,
+							closeOnSelect: true,
+							showInfoIcon: true,
+						},
+						values: function (){
+							return [
+								{
+									id: "a",
+									label: "a",
+									children: [
+										{
+											id: "aa",
+											label: "aa",
+										},
+										{
+											id: "ab",
+											label: "ab",
+										}
+									]
+								},
+								{
+									id: "c",
+									label: "c",
+									children: [
+										{
+											id: "ca",
+											label: "ca",
+										},
+										{
+											id: "cb",
+											label: "cb",
+										}
+									]
+								}
+							];
+						}
+					},
 					{
 						type: "input",
 						inputType: "text",
